@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_server/view/introduction.dart';
+import 'package:todo_list_server/view/utility.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    initializeScreenData(context);
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Introduction(),
+    );
   }
 }
