@@ -38,7 +38,7 @@ class BottomFloatingButton extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Let’s Start",
+                Text(title,
                     style: GoogleFonts.lexendDeca(
                       fontSize: scaledHeight(19),
                       fontWeight: FontWeight.w700,
