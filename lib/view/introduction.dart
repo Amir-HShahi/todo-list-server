@@ -14,6 +14,12 @@ class Introduction extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: BottomFloatingButton(
+          title: "Let’s Start",
+          iconPath: "assets/arrow_left.svg",
+          placeIconAtEnd: true,
+          onTap: tapStartButtonHandler),
       body: SafeArea(
           child: Stack(
         alignment: Alignment.topCenter,
@@ -33,11 +39,6 @@ class Introduction extends StatelessWidget {
                     color: const Color(0xff5F33E1)),
               ),
               SizedBox(height: scaledHeight(72)),
-              BottomFloatingButton(
-                  title: "Let’s Start",
-                  iconPath: "assets/arrow_left.svg",
-                  placeIconAtEnd: true,
-                  onTap: tapStartButtonHandler)
             ],
           )
         ],
