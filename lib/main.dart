@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_server/routes.dart';
 import 'package:todo_list_server/view/introduction.dart';
 import 'package:todo_list_server/view/utility.dart';
 
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeScreenData(context);
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Introduction(),
+      home: const Introduction(),
+      routes: routes,
     );
   }
 }
