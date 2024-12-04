@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
+import 'package:todo_list_server/view/components/cutomized_app_bar.dart';
 import 'package:todo_list_server/view/components/task_card_widget.dart';
 import 'package:todo_list_server/view/utility.dart';
 
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomizedAppBar(title: "Home"),
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: BottomFloatingButton(
@@ -27,11 +29,6 @@ class HomeScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: scaledHeight(62), width: double.infinity),
-                Text("Home",
-                    style: GoogleFonts.lexendDeca(
-                        fontSize: scaledHeight(19), fontWeight: FontWeight.w800)),
-                SizedBox(height: scaledHeight(24)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
