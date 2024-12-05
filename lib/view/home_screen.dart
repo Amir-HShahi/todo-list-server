@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
-import 'package:todo_list_server/view/components/cutomized_app_bar.dart';
+import 'package:todo_list_server/view/components/customized_app_bar.dart';
 import 'package:todo_list_server/view/components/task_card_widget.dart';
 import 'package:todo_list_server/view/utility.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void tapAddTaskHandler() {}
-
   void tapEditButtonHandler() {}
 
   @override
   Widget build(BuildContext context) {
+    void tapAddTaskHandler() {
+      Navigator.pushNamed(context, "/AddTask");
+    }
+
     return Scaffold(
       appBar: CustomizedAppBar(title: "Home"),
       backgroundColor: Colors.white,
