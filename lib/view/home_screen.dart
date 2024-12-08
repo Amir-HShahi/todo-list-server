@@ -8,10 +8,12 @@ import 'package:todo_list_server/view/utility.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  void tapEditButtonHandler() {}
-
   @override
   Widget build(BuildContext context) {
+    void tapEditButtonHandler() {
+      Navigator.pushNamed(context, "/EditTask");
+    }
+
     void tapAddTaskHandler() {
       Navigator.pushNamed(context, "/AddTask");
     }
