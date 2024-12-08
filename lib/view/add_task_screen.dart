@@ -41,7 +41,11 @@ class AddTaskScreen extends StatelessWidget {
                   selectDateHandler: (DateTime gg, DateTime jj) {},
                   hintTime: DateTime.now()),
               SizedBox(height: scaledHeight(24)),
-              // DateFieldWidget(title: "End Date"),
+              DateDropdownWidget(
+                  title: "Start Date",
+                  selectDateHandler: (DateTime gg, DateTime jj) {},
+                  hintTime: DateTime.now()),
+              SizedBox(height: scaledHeight(24)),
             ],
           ),
         ),

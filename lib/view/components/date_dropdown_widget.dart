@@ -32,6 +32,7 @@ class _DateDropdownWidgetState extends State<DateDropdownWidget> {
 
   void selectBirthDateHandler(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
+      isSelected = true;
       widget.selectDateHandler(selectedDay, focusedDay);
       selectedTime = focusedDay;
 
@@ -43,7 +44,6 @@ class _DateDropdownWidgetState extends State<DateDropdownWidget> {
   Widget build(BuildContext context) {
     if (!isSelected) {
       selectedTime = widget.hintTime;
-      isSelected = true;
     }
     return Container(
       decoration: BoxDecoration(boxShadow: [
