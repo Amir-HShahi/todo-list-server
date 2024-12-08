@@ -15,7 +15,7 @@ class EditTaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void addTaskHandler() {
+    void editTaskHandler() {
       Navigator.pop(context);
     }
 
@@ -25,7 +25,7 @@ class EditTaskScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: BottomFloatingButton(
           title: "Edited",
-          onTap: addTaskHandler,
+          onTap: editTaskHandler,
           iconPath: "assets/edit_icon.svg"),
       body: SingleChildScrollView(
         child: Padding(
