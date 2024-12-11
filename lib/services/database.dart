@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../model/task_model.dart';
 
 class DatabaseHandler {
   static late Database _db;
@@ -19,5 +22,19 @@ class DatabaseHandler {
     _db = await openDatabase(join(await getDatabasesPath(), _databaseName),
         onCreate: _onCreateHandler, version: 1);
     return _db;
+  }
+
+  static void insertTaskModel(TaskModel task) async {
+    _db.insert('tasks', task.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  static FutureOr<List<TaskModel>> retrieveTaskModels() async {
+
+    final List<Map<String, dynamic>> taskModelMaps = await _db.query('tasks');
+    return [
+      for (Map<String, dynamic> map in taskModelMaps)
+        jsonDecode(map.toString()),
+    ];
   }
 }
