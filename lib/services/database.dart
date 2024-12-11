@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
@@ -36,7 +35,13 @@ class DatabaseHandler {
     final List<Map<String, dynamic>> taskModelMaps = await _db.query('tasks');
     return [
       for (Map<String, dynamic> map in taskModelMaps)
-        jsonDecode(map.toString()),
+        TaskModel(
+            id: map['id'],
+            title: map['title'],
+            description: map['description'],
+            createdAt: DateTime.parse(map['createdAt']),
+            dueDate: DateTime.parse(map['dueDate']),
+            isCompleted: map['isCompleted'] == 1),
     ];
   }
 

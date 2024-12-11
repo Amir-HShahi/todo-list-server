@@ -4,14 +4,15 @@ class TaskModel {
   String description;
   DateTime createdAt;
   DateTime dueDate;
-  bool isCompleted = false;
+  bool isCompleted;
 
   TaskModel(
       {required this.id,
       required this.title,
       required this.description,
       required this.createdAt,
-      required this.dueDate});
+      required this.dueDate,
+      this.isCompleted = false});
 
   Map<String, dynamic> toJson() => {
         'id': id,
