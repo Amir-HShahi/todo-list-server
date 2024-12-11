@@ -12,4 +12,20 @@ class TaskModel {
       required this.description,
       required this.createdAt,
       required this.dueDate});
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'description': description,
+        'createdAt': createdAt.toIso8601String(),
+        'dueDate': dueDate.toIso8601String(),
+        'isCompleted': isCompleted
+      };
+
+  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      createdAt: DateTime.parse(json['createdAt']),
+      dueDate: DateTime.parse(json['dueDAte']));
 }
