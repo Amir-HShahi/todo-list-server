@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_server/model/task_model.dart';
+import 'package:todo_list_server/services/database.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
 import 'package:todo_list_server/view/components/customized_app_bar.dart';
 import 'package:todo_list_server/view/components/date_dropdown_widget.dart';
@@ -15,6 +17,12 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void addTaskHandler() {
+      DatabaseHandler.insertTaskModel(TaskModel(
+          id: 1,
+          title: 'title',
+          description: 'description',
+          createdAt: DateTime.now(),
+          dueDate: DateTime.now()));
       Navigator.pop(context);
     }
 
