@@ -24,17 +24,21 @@ class DatabaseHandler {
     return _db;
   }
 
-  static void insertTaskModel(TaskModel task) async {
-    _db.insert('tasks', task.toJson(),
+  static void insertTaskModel(TaskModel taskModel) async {
+    _db.insert('tasks', taskModel.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   static FutureOr<List<TaskModel>> retrieveTaskModels() async {
-
     final List<Map<String, dynamic>> taskModelMaps = await _db.query('tasks');
     return [
       for (Map<String, dynamic> map in taskModelMaps)
         jsonDecode(map.toString()),
     ];
+  }
+
+  static void updateTaskModel(TaskModel taskModel) async {
+    await _db.update('tasks', taskModel.toJson(),
+        where: 'id = ?', whereArgs: [taskModel.id]);
   }
 }
