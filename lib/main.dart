@@ -6,7 +6,7 @@ import 'package:todo_list_server/view/introduction.dart';
 import 'package:todo_list_server/view/utility.dart';
 
 void main() async {
-  await DatabaseHandler.initialize();
+  await DatabaseHandler.initializeDatabase();
   runApp(const MyApp());
 }
 

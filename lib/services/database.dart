@@ -17,7 +17,7 @@ class DatabaseHandler {
     );
   }
 
-  static Future<Database> initialize() async {
+  static Future<Database> initializeDatabase() async {
     WidgetsFlutterBinding.ensureInitialized();
     _db = await openDatabase(join(await getDatabasesPath(), _databaseName),
         onCreate: _onCreateHandler, version: 1);
@@ -40,5 +40,9 @@ class DatabaseHandler {
   static void updateTaskModel(TaskModel taskModel) async {
     await _db.update('tasks', taskModel.toJson(),
         where: 'id = ?', whereArgs: [taskModel.id]);
+  }
+
+  static void deleteTaskModel(TaskModel taskModel) async {
+    await _db.delete('tasks', where: 'id = ?', whereArgs: [taskModel.id]);
   }
 }
