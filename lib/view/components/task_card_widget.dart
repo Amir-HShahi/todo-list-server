@@ -37,9 +37,9 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
     }
 
     void toggleTaskCondition() {
-      taskViewModel.editTaskModel(widget.taskModel);
       setState(() {
         widget.taskModel.isCompleted = !widget.taskModel.isCompleted;
+        taskViewModel.editTaskModel(widget.taskModel);
       });
     }
 

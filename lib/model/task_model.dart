@@ -20,7 +20,7 @@ class TaskModel {
         'description': description,
         'createdAt': createdAt.toIso8601String(),
         'dueDate': dueDate.toIso8601String(),
-        'isCompleted': isCompleted
+        'isCompleted': isCompleted ? 1 : 0
       };
 
   factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
