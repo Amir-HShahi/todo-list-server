@@ -34,27 +34,30 @@ class AddTaskScreen extends StatelessWidget {
           title: "Add",
           onTap: addTaskHandler,
           iconPath: "assets/plus_icon.svg"),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: scaledWidth(30)),
-          child: Column(
-            children: [
-              TaskNameField(hintText: 'Title', controller: titleController),
-              SizedBox(height: scaledHeight(24)),
-              DescriptionFieldWidget(
-                  hintText: "...", controller: descriptionController),
-              SizedBox(height: scaledHeight(24)),
-              DateDropdownWidget(
-                  title: "Start Date",
-                  selectDateHandler: (DateTime gg, DateTime jj) {},
-                  hintTime: DateTime.now()),
-              SizedBox(height: scaledHeight(24)),
-              DateDropdownWidget(
-                  title: "Start Date",
-                  selectDateHandler: (DateTime gg, DateTime jj) {},
-                  hintTime: DateTime.now()),
-              SizedBox(height: scaledHeight(24)),
-            ],
+      body: SizedBox(
+        height: scaledHeight(550),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: scaledWidth(30)),
+            child: Column(
+              children: [
+                TaskNameField(hintText: 'Title', controller: titleController),
+                SizedBox(height: scaledHeight(24)),
+                DescriptionFieldWidget(
+                    hintText: "...", controller: descriptionController),
+                SizedBox(height: scaledHeight(24)),
+                DateDropdownWidget(
+                    title: "Start Date",
+                    selectDateHandler: (DateTime gg, DateTime jj) {},
+                    hintTime: DateTime.now()),
+                SizedBox(height: scaledHeight(24)),
+                DateDropdownWidget(
+                    title: "Start Date",
+                    selectDateHandler: (DateTime gg, DateTime jj) {},
+                    hintTime: DateTime.now()),
+                SizedBox(height: scaledHeight(24)),
+              ],
+            ),
           ),
         ),
       ),
