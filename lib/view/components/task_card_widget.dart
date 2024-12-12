@@ -7,11 +7,13 @@ class TaskCardWidget extends StatefulWidget {
   final String title;
   final String date;
   final Color textColor;
+  final bool isEditing;
   const TaskCardWidget(
       {super.key,
       required this.textColor,
       required this.title,
-      required this.date});
+      required this.date,
+      required this.isEditing});
 
   @override
   State<TaskCardWidget> createState() => _TaskCardWidgetState();
@@ -19,12 +21,17 @@ class TaskCardWidget extends StatefulWidget {
 
 class _TaskCardWidgetState extends State<TaskCardWidget> {
   bool isTaskDone = false;
+  bool isEditing = false;
 
   void toggleTaskCondition() {
     setState(() {
       isTaskDone = !isTaskDone;
     });
   }
+
+  void deleteTaskHandler() {}
+
+  void editTaskHandler() {}
 
   @override
   Widget build(BuildContext context) {
@@ -66,19 +73,69 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                 ],
               ),
               const Spacer(),
-              Container(
-                margin: EdgeInsets.only(top: scaledHeight(19.5)),
-                height: scaledHeight(25),
-                width: scaledHeight(25),
-                decoration: const BoxDecoration(
-                    color: Colors.white, shape: BoxShape.circle),
-                child: isTaskDone
-                    ? Image(
-                        image: const AssetImage("assets/done_task.png"),
-                        color: widget.textColor)
-                    : const Text(""),
-              ),
-              SizedBox(width: scaledWidth(20), height: scaledHeight(64)),
+              Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  !widget.isEditing
+                      ? Row(
+                          children: [
+                            Container(
+                              height: scaledHeight(25),
+                              width: scaledHeight(25),
+                              decoration: const BoxDecoration(
+                                  color: Colors.white, shape: BoxShape.circle),
+                              child: isTaskDone
+                                  ? Image(
+                                      image: const AssetImage(
+                                          "assets/done_task.png"),
+                                      color: widget.textColor)
+                                  : const Text(""),
+                            ),
+                            SizedBox(
+                                width: scaledWidth(20),
+                                height: scaledHeight(64)),
+                          ],
+                        )
+                      : const SizedBox(),
+                  Row(
+                    children: [
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 150),
+                        opacity: widget.isEditing ? 1 : 0,
+                        child: InkWell(
+                          onTap: widget.isEditing ? editTaskHandler : null,
+                          child: Image(
+                              image:
+                                  const AssetImage("assets/task_edit_icon.png"),
+                              color: widget.textColor,
+                              height: scaledHeight(24)),
+                        ),
+                      ),
+                      SizedBox(width: scaledWidth(16)),
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 150),
+                        opacity: widget.isEditing ? 1 : 0,
+                        child: InkWell(
+                          onTap: widget.isEditing ? deleteTaskHandler : null,
+                          child: Container(
+                            width: scaledWidth(54),
+                            height: scaledHeight(64),
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(14),
+                                  bottomRight: Radius.circular(14)),
+                            ),
+                            child: SvgPicture.asset("assets/trash_icon.svg",
+                                height: scaledHeight(18)),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
         ),
