@@ -25,7 +25,6 @@ class DatabaseHandler {
 
   static void insertTaskModel(TaskModel taskModel) async {
     var taskModelMap = taskModel.toJson();
-    // taskModelMap['isCompleted'] = taskModel.isCompleted ? 1 : 0;
 
     _db.insert('tasks', taskModelMap,
         conflictAlgorithm: ConflictAlgorithm.replace);
