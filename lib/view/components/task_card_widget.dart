@@ -23,12 +23,6 @@ class TaskCardWidget extends StatefulWidget {
 }
 
 class _TaskCardWidgetState extends State<TaskCardWidget> {
-  void toggleTaskCondition() {
-    setState(() {
-      widget.taskModel.isCompleted = !widget.taskModel.isCompleted;
-    });
-  }
-
   void editTaskHandler() {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => EditTaskScreen(taskModel: widget.taskModel)));
@@ -36,9 +30,17 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final taskViewModel = context.read<TaskViewModel>();
+
     void deleteTaskHandler() {
-      final taskViewModel = context.read<TaskViewModel>();
       taskViewModel.deleteTaskModel(widget.taskModel);
+    }
+
+    void toggleTaskCondition() {
+      taskViewModel.editTaskModel(widget.taskModel);
+      setState(() {
+        widget.taskModel.isCompleted = !widget.taskModel.isCompleted;
+      });
     }
 
     return Stack(

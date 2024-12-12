@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_list_server/services/shared_preferences.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
 import 'package:todo_list_server/view/utility.dart';
 
@@ -9,6 +10,7 @@ class Introduction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void tapStartButtonHandler() {
+      SharedPreference.setHasShownIntro(true);
       Navigator.pushNamed(context, "/home");
     }
 
