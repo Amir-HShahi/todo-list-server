@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_server/model/task_model.dart';
-import 'package:todo_list_server/services/database_handler.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
 import 'package:todo_list_server/view/components/customized_app_bar.dart';
 import 'package:todo_list_server/view/components/date_dropdown_widget.dart';
 import 'package:todo_list_server/view/components/description_field_widget.dart';
 import 'package:todo_list_server/view/components/task_name_field.dart';
 import 'package:todo_list_server/view/utility.dart';
+
+import '../viewModel/task_view_model.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -33,6 +35,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     void addTaskHandler() {
+      final taskViewModel = context.read<TaskViewModel>();
+      taskViewModel.addTaskModel(TaskModel(
+          id: taskViewModel.generateId(),
+          title: titleController.text,
+          description: descriptionController.text,
+          createdAt: startDate,
+          dueDate: endDate));
       Navigator.pop(context);
     }
 

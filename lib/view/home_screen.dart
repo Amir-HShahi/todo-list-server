@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_server/model/task_model.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
 import 'package:todo_list_server/view/components/customized_app_bar.dart';
 import 'package:todo_list_server/view/utility.dart';
 
+import '../viewModel/task_view_model.dart';
 import 'components/task_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,17 +18,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isEditing = false;
-  List<TaskModel> taskModels = [
-    TaskModel(
-        id: 1,
-        title: 'title',
-        description: 'description',
-        createdAt: DateTime.now(),
-        dueDate: DateTime.now())
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final taskViewModel = context.watch<TaskViewModel>();
     void tapEditButtonHandler() {
       setState(() {
         isEditing = !isEditing;
@@ -79,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: scaledHeight(16)),
-                for (TaskModel model in taskModels)
+                for (TaskModel model in taskViewModel.getTaskModels())
                   Column(
                     children: [
                       TaskCardWidget(

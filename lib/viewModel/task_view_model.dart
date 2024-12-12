@@ -3,6 +3,7 @@ import 'package:todo_list_server/model/task_model.dart';
 import 'package:todo_list_server/services/database_handler.dart';
 
 class TaskViewModel with ChangeNotifier {
+  static int _idTracker = 0;
   late List<TaskModel> _taskModels = [];
 
   void addTaskModel(TaskModel taskModel) {
@@ -11,17 +12,23 @@ class TaskViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  int generateId() {
+    return ++_idTracker;
+  }
+
   List<TaskModel> getTaskModels() {
     return _taskModels;
   }
 
   void initializeData() async {
     _taskModels = await DatabaseHandler.retrieveTaskModels();
+    _idTracker = _taskModels.length;
     notifyListeners();
   }
 
   void deleteTaskModel(TaskModel taskModel) async {
     DatabaseHandler.deleteTaskModel(taskModel);
+    _taskModels.remove(taskModel);
     notifyListeners();
   }
 

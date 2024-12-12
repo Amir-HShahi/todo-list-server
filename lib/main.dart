@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeScreenData(context);
+    final taskViewModel = context.read<TaskViewModel>();
+    taskViewModel.initializeData();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const Introduction(),
