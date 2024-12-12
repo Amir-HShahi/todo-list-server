@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_server/model/task_model.dart';
 import 'package:todo_list_server/view/utility.dart';
 
+import '../viewModel/task_view_model.dart';
 import 'components/bottom_floating_button.dart';
 import 'components/customized_app_bar.dart';
 import 'components/date_dropdown_widget.dart';
@@ -19,8 +21,8 @@ class EditTaskScreen extends StatefulWidget {
 class _EditTaskScreenState extends State<EditTaskScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  DateTime startDate = DateTime.now();
-  DateTime endDate = DateTime.now();
+  late DateTime startDate = widget.taskModel.createdAt;
+  late DateTime endDate = widget.taskModel.dueDate;
 
   void selectStartDateHandler(DateTime selected, DateTime hint) {
     startDate = selected;
@@ -33,6 +35,16 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   @override
   Widget build(BuildContext context) {
     void editTaskHandler() {
+      final taskViewModel = context.read<TaskViewModel>();
+      if (titleController.text != '') {
+        widget.taskModel.title = titleController.text;
+      }
+      if (descriptionController.text != '') {
+        widget.taskModel.description = descriptionController.text;
+      }
+      widget.taskModel.createdAt = startDate;
+      widget.taskModel.dueDate = endDate;
+      taskViewModel.editTaskModel(widget.taskModel);
       Navigator.pop(context);
     }
 
