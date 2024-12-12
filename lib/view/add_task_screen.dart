@@ -8,11 +8,27 @@ import 'package:todo_list_server/view/components/description_field_widget.dart';
 import 'package:todo_list_server/view/components/task_name_field.dart';
 import 'package:todo_list_server/view/utility.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({super.key});
+class AddTaskScreen extends StatefulWidget {
+  const AddTaskScreen({super.key});
 
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now();
+
+  void selectStartDateHandler(DateTime selected, DateTime hint) {
+    startDate = selected;
+  }
+
+  void selectEndDateHandler(DateTime selected, DateTime hint) {
+    endDate = selected;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +64,12 @@ class AddTaskScreen extends StatelessWidget {
                 SizedBox(height: scaledHeight(24)),
                 DateDropdownWidget(
                     title: "Start Date",
-                    selectDateHandler: (DateTime gg, DateTime jj) {},
+                    selectDateHandler: selectStartDateHandler,
                     hintTime: DateTime.now()),
                 SizedBox(height: scaledHeight(24)),
                 DateDropdownWidget(
-                    title: "Start Date",
-                    selectDateHandler: (DateTime gg, DateTime jj) {},
+                    title: "End Date",
+                    selectDateHandler: selectEndDateHandler,
                     hintTime: DateTime.now()),
                 SizedBox(height: scaledHeight(24)),
               ],
