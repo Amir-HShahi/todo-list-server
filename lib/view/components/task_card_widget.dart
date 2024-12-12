@@ -1,40 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_server/model/task_model.dart';
+import 'package:todo_list_server/view/edit_task_screen.dart';
 import 'package:todo_list_server/view/utility.dart';
 
+import '../../viewModel/task_view_model.dart';
+
 class TaskCardWidget extends StatefulWidget {
-  final String title;
-  final String date;
+  final TaskModel taskModel;
   final Color textColor;
   final bool isEditing;
   const TaskCardWidget(
       {super.key,
       required this.textColor,
-      required this.title,
-      required this.date,
-      required this.isEditing});
+      required this.isEditing,
+      required this.taskModel});
 
   @override
   State<TaskCardWidget> createState() => _TaskCardWidgetState();
 }
 
 class _TaskCardWidgetState extends State<TaskCardWidget> {
-  bool isTaskDone = false;
-  bool isEditing = false;
-
   void toggleTaskCondition() {
     setState(() {
-      isTaskDone = !isTaskDone;
+      widget.taskModel.isCompleted = !widget.taskModel.isCompleted;
     });
   }
 
-  void deleteTaskHandler() {}
-
-  void editTaskHandler() {}
+  void editTaskHandler() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => EditTaskScreen(taskModel: widget.taskModel)));
+  }
 
   @override
   Widget build(BuildContext context) {
+    void deleteTaskHandler() {
+      final taskViewModel = context.read<TaskViewModel>();
+      taskViewModel.deleteTaskModel(widget.taskModel);
+    }
+
     return Stack(
       alignment: Alignment.centerLeft,
       children: [
@@ -60,12 +66,12 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                   SvgPicture.asset("assets/bag_icon.svg",
                       height: scaledHeight(14)),
                   SizedBox(height: scaledHeight(4)),
-                  Text(widget.title,
+                  Text(widget.taskModel.title,
                       style: GoogleFonts.lexendDeca(
                           color: widget.textColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w800)),
-                  Text(widget.date,
+                  Text(widget.taskModel.description,
                       style: GoogleFonts.lexendDeca(
                         color: widget.textColor.withOpacity(0.5),
                         fontSize: 8,
@@ -84,7 +90,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                               width: scaledHeight(25),
                               decoration: const BoxDecoration(
                                   color: Colors.white, shape: BoxShape.circle),
-                              child: isTaskDone
+                              child: widget.taskModel.isCompleted
                                   ? Image(
                                       image: const AssetImage(
                                           "assets/done_task.png"),

@@ -78,9 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     children: [
                       TaskCardWidget(
+                        taskModel: model,
                         textColor: const Color(0xffF478B8),
-                        title: model.title,
-                        date: model.description,
                         isEditing: isEditing,
                       ),
                       SizedBox(height: scaledHeight(16)),
