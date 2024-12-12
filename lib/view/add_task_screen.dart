@@ -33,12 +33,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     void addTaskHandler() {
-      DatabaseHandler.insertTaskModel(TaskModel(
-          id: 1,
-          title: 'title',
-          description: 'description',
-          createdAt: DateTime.now(),
-          dueDate: DateTime.now()));
       Navigator.pop(context);
     }
 

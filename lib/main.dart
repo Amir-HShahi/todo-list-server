@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list_server/routes.dart';
 import 'package:todo_list_server/services/database_handler.dart';
 import 'package:todo_list_server/view/introduction.dart';
 import 'package:todo_list_server/view/utility.dart';
+import 'package:todo_list_server/viewModel/task_view_model.dart';
 
 void main() async {
   await DatabaseHandler.initializeDatabase();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaskViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
