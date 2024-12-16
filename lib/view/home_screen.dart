@@ -59,7 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     AnimatedOpacity(
                       duration: const Duration(milliseconds: 150),
-                      opacity: isEditing || taskViewModel.getTaskModels().isEmpty ? 0 : 1,
+                      opacity:
+                          isEditing || taskViewModel.getTaskModels().isEmpty
+                              ? 0
+                              : 1,
                       child: TextButton(
                           onPressed: tapEditButtonHandler,
                           style: ButtonStyle(
