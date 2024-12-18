@@ -49,6 +49,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: CustomizedAppBar(title: "Edit"),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
