@@ -46,6 +46,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: CustomizedAppBar(title: "Add Task"),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
