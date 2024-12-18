@@ -35,8 +35,6 @@ class _DateDropdownWidgetState extends State<DateDropdownWidget> {
       isSelected = true;
       widget.selectDateHandler(selectedDay, focusedDay);
       selectedTime = focusedDay;
-
-      controller.expanded = !controller.expanded;
     });
   }
 
@@ -68,34 +66,37 @@ class _DateDropdownWidgetState extends State<DateDropdownWidget> {
             theme: const ExpandableThemeData(
                 tapHeaderToExpand: false, hasIcon: false),
             collapsed: const SizedBox(),
-            header: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: scaledWidth(16), vertical: scaledHeight(16)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset("assets/calendar_icon.svg",
-                      height: scaledHeight(16)),
-                  SizedBox(width: scaledWidth(12)),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(widget.title,
-                          style: GoogleFonts.lexendDeca(
-                              fontSize: scaledHeight(8),
-                              color: const Color(0xff6E6A7C))),
-                      SizedBox(height: scaledHeight(4)),
-                      Text(DateFormat('dd MMM, yyyy').format(selectedTime),
-                          style: GoogleFonts.lexendDeca(
-                              fontSize: scaledHeight(12),
-                              color: const Color(0xff24252C)))
-                    ],
-                  ),
-                  const Spacer(),
-                  SvgPicture.asset("assets/expand_down_icon.svg",
-                      height: scaledHeight(24))
-                ],
+            header: InkWell(
+              onTap: controller.expanded ? expandCardHandler : null,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: scaledWidth(16), vertical: scaledHeight(16)),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset("assets/calendar_icon.svg",
+                        height: scaledHeight(16)),
+                    SizedBox(width: scaledWidth(12)),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.title,
+                            style: GoogleFonts.lexendDeca(
+                                fontSize: scaledHeight(8),
+                                color: const Color(0xff6E6A7C))),
+                        SizedBox(height: scaledHeight(4)),
+                        Text(DateFormat('dd MMM, yyyy').format(selectedTime),
+                            style: GoogleFonts.lexendDeca(
+                                fontSize: scaledHeight(12),
+                                color: const Color(0xff24252C)))
+                      ],
+                    ),
+                    const Spacer(),
+                    SvgPicture.asset("assets/expand_down_icon.svg",
+                        height: scaledHeight(24))
+                  ],
+                ),
               ),
             ),
             expanded: Column(
