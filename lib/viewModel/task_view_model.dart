@@ -29,6 +29,7 @@ class TaskViewModel with ChangeNotifier {
   }
 
   void deleteTaskModel(TaskModel taskModel) async {
+    HttpHandler.deleteTaskModel(taskModel);
     DatabaseHandler.deleteTaskModel(taskModel);
     _taskModels.remove(taskModel);
     notifyListeners();

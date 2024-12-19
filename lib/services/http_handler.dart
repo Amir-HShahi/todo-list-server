@@ -14,7 +14,10 @@ class HttpHandler {
         body: jsonEncode(taskModel.toJson()));
   }
 
-  static void deleteTaskModel(TaskModel taskModel) async {}
+  static void deleteTaskModel(TaskModel taskModel) async {
+    await http.delete(
+        Uri.parse('http://$_ipAddress:$_port/to_do/task/${taskModel.id}/'));
+  }
 
   static void updateTaskModel(TaskModel taskModel) async {}
 
