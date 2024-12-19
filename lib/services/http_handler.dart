@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:todo_list_server/model/task_model.dart';
 
 class HttpHandler {
-  static const String _ipAddress = '10.0.2.2';
+  static const String _ipAddress = '194.5.175.98';
   static const String _port = '666';
 
   static Future<TaskModel> insertTaskModel(TaskModel taskModel) async {
