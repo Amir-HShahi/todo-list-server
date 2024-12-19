@@ -4,18 +4,13 @@ import 'package:todo_list_server/services/database_handler.dart';
 import 'package:todo_list_server/services/http_handler.dart';
 
 class TaskViewModel with ChangeNotifier {
-  static int _idTracker = 0;
   late List<TaskModel> _taskModels = [];
 
-  void addTaskModel(TaskModel taskModel) {
-    HttpHandler.insertTaskModel(taskModel);
-    DatabaseHandler.insertTaskModel(taskModel);
-    _taskModels.add(taskModel);
+  void addTaskModel(TaskModel taskModel) async {
+    TaskModel fetchedModel = await HttpHandler.insertTaskModel(taskModel);
+    DatabaseHandler.insertTaskModel(fetchedModel);
+    _taskModels.add(fetchedModel);
     notifyListeners();
-  }
-
-  int generateId() {
-    return ++_idTracker;
   }
 
   List<TaskModel> getTaskModels() {
@@ -23,8 +18,7 @@ class TaskViewModel with ChangeNotifier {
   }
 
   void initializeData() async {
-    _taskModels = await DatabaseHandler.retrieveTaskModels();
-    _idTracker = _taskModels.length;
+    _taskModels = await HttpHandler.retrieveTaskModels();
     notifyListeners();
   }
 

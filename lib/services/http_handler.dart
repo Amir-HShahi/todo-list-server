@@ -8,10 +8,14 @@ class HttpHandler {
   static const String _ipAddress = '10.0.2.2';
   static const String _port = '666';
 
-  static Future<http.Response> insertTaskModel(TaskModel taskModel) async {
-    return http.post(Uri.parse('http://$_ipAddress:$_port/to_do/tasks/'),
+  static Future<TaskModel> insertTaskModel(TaskModel taskModel) async {
+    final response = await http.post(
+        Uri.parse('http://$_ipAddress:$_port/to_do/tasks/'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: jsonEncode(taskModel.toJson()));
+
+    return TaskModel.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
   }
 
   static void deleteTaskModel(TaskModel taskModel) async {
@@ -20,7 +24,8 @@ class HttpHandler {
   }
 
   static void updateTaskModel(TaskModel taskModel) async {
-    await http.put(Uri.parse('http://$_ipAddress:$_port/to_do/task/${taskModel.id}/'),
+    await http.put(
+        Uri.parse('http://$_ipAddress:$_port/to_do/task/${taskModel.id}/'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: jsonEncode(taskModel.toJson()));
   }

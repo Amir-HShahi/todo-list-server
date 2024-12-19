@@ -37,7 +37,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     void addTaskHandler() {
       final taskViewModel = context.read<TaskViewModel>();
       taskViewModel.addTaskModel(TaskModel(
-          id: taskViewModel.generateId(),
+          id: 0, //initial value
           title: titleController.text,
           description: descriptionController.text,
           startDate: startDate,
