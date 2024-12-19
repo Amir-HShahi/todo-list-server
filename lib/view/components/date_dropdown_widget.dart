@@ -35,6 +35,7 @@ class _DateDropdownWidgetState extends State<DateDropdownWidget> {
       isSelected = true;
       widget.selectDateHandler(selectedDay, focusedDay);
       selectedTime = focusedDay;
+      controller.expanded = !controller.expanded;
     });
   }
 

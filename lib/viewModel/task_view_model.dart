@@ -18,7 +18,10 @@ class TaskViewModel with ChangeNotifier {
   }
 
   void initializeData() async {
-    _taskModels = await HttpHandler.retrieveTaskModels();
+    List<TaskModel> _retrivedTaskModels =
+        await HttpHandler.retrieveTaskModels();
+
+    _taskModels = await DatabaseHandler.retrieveTaskModels();
     notifyListeners();
   }
 
