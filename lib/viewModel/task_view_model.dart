@@ -36,6 +36,7 @@ class TaskViewModel with ChangeNotifier {
   }
 
   void editTaskModel(TaskModel taskModel) async {
+    HttpHandler.updateTaskModel(taskModel);
     DatabaseHandler.updateTaskModel(taskModel);
     notifyListeners();
   }
