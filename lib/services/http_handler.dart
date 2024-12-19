@@ -9,9 +9,10 @@ class HttpHandler {
   static const String _port = '666';
 
   static void insertTaskModel(TaskModel taskModel) async {
-    print('------------------------------------------------------------');
-    print('jsonEncode(taskModel.toJson()))');
     await http.post(Uri.parse('http://$_ipAddress:$_port/to_do/tasks/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
         body: jsonEncode(taskModel.toJson()));
   }
 
