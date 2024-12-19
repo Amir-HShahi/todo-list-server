@@ -24,7 +24,7 @@ class TaskModel {
       };
 
   factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
-      id: 1,
+      id: json['id'],
       title: json['title'],
       description: json['description'],
       startDate: DateTime.parse(json['created_at']),

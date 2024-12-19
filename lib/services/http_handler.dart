@@ -20,7 +20,7 @@ class HttpHandler {
   }
 
   static void updateTaskModel(TaskModel taskModel) async {
-    await http.put(Uri.parse('http://$_ipAddress:$_port/to_do/task/1/'),
+    await http.put(Uri.parse('http://$_ipAddress:$_port/to_do/task/${taskModel.id}/'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: jsonEncode(taskModel.toJson()));
   }
