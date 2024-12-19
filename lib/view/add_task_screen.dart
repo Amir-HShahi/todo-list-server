@@ -40,7 +40,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           id: taskViewModel.generateId(),
           title: titleController.text,
           description: descriptionController.text,
-          createdAt: startDate,
+          startDate: startDate,
           dueDate: endDate));
       Navigator.pop(context);
     }

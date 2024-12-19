@@ -21,7 +21,7 @@ class EditTaskScreen extends StatefulWidget {
 class _EditTaskScreenState extends State<EditTaskScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  late DateTime startDate = widget.taskModel.createdAt;
+  late DateTime startDate = widget.taskModel.startDate;
   late DateTime endDate = widget.taskModel.dueDate;
 
   void selectStartDateHandler(DateTime selected, DateTime hint) {
@@ -42,7 +42,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       if (descriptionController.text != '') {
         widget.taskModel.description = descriptionController.text;
       }
-      widget.taskModel.createdAt = startDate;
+      widget.taskModel.startDate = startDate;
       widget.taskModel.dueDate = endDate;
       taskViewModel.editTaskModel(widget.taskModel);
       Navigator.pop(context);
@@ -75,7 +75,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 DateDropdownWidget(
                     title: "Start Date",
                     selectDateHandler: selectStartDateHandler,
-                    hintTime: widget.taskModel.createdAt),
+                    hintTime: widget.taskModel.startDate),
                 SizedBox(height: scaledHeight(24)),
                 DateDropdownWidget(
                     title: "Start Date",

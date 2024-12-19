@@ -2,7 +2,7 @@ class TaskModel {
   final int id;
   String title;
   String description;
-  DateTime createdAt;
+  DateTime startDate;
   DateTime dueDate;
   bool isCompleted;
 
@@ -10,7 +10,7 @@ class TaskModel {
       {required this.id,
       required this.title,
       required this.description,
-      required this.createdAt,
+      required this.startDate,
       required this.dueDate,
       this.isCompleted = false});
 
@@ -18,15 +18,8 @@ class TaskModel {
         'id': id,
         'title': title,
         'description': description,
-        'createdAt': createdAt.toIso8601String(),
-        'dueDate': dueDate.toIso8601String(),
-        'isCompleted': isCompleted ? 1 : 0
+        'start_date': startDate.toIso8601String(),
+        'due_date': dueDate.toIso8601String(),
+        'is_completed': isCompleted
       };
-
-  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      createdAt: DateTime.parse(json['createdAt']),
-      dueDate: DateTime.parse(json['dueDAte']));
 }

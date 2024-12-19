@@ -12,7 +12,7 @@ class DatabaseHandler {
 
   static FutureOr<void> _onCreateHandler(Database db, int version) {
     return db.execute(
-      'CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT, description TEXT, createdAt DATETIME, dueDate DATETIME, isCompleted BOOLEAN)',
+      'CREATE TABLE tasks(id INTEGER PRIMARY KEY, title TEXT, description TEXT, start_date DATETIME, due_date DATETIME, is_completed BOOLEAN)',
     );
   }
 
@@ -38,9 +38,9 @@ class DatabaseHandler {
             id: map['id'],
             title: map['title'],
             description: map['description'],
-            createdAt: DateTime.parse(map['createdAt']),
-            dueDate: DateTime.parse(map['dueDate']),
-            isCompleted: map['isCompleted'] == 1),
+            startDate: DateTime.parse(map['start_date']),
+            dueDate: DateTime.parse(map['due_date']),
+            isCompleted: map['is_completed'] == 1),
     ];
   }
 
