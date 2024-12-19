@@ -25,8 +25,6 @@ class HttpHandler {
         body: jsonEncode(taskModel.toJson()));
   }
 
-  static void getTaskModel() async {}
-
   static FutureOr<List<TaskModel>> retrieveTaskModels() async {
     final response =
         await http.get(Uri.parse('http://$_ipAddress:$_port/to_do/tasks/'));
