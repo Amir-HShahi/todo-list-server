@@ -20,8 +20,7 @@ class HttpHandler {
   }
 
   static void updateTaskModel(TaskModel taskModel) async {
-    await http.put(
-        Uri.parse('http://$_ipAddress:$_port/to_do/task/1/'),
+    await http.put(Uri.parse('http://$_ipAddress:$_port/to_do/task/1/'),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: jsonEncode(taskModel.toJson()));
   }
@@ -29,6 +28,10 @@ class HttpHandler {
   static void getTaskModel() async {}
 
   static FutureOr<List<TaskModel>> retrieveTaskModels() async {
-    return [];
+    final response =
+        await http.get(Uri.parse('http://$_ipAddress:$_port/to_do/tasks/'));
+
+    List<dynamic> jsonList = json.decode(response.body);
+    return jsonList.map((json) => TaskModel.fromJson(json)).toList();
   }
 }

@@ -22,4 +22,12 @@ class TaskModel {
         'due_date': dueDate.toIso8601String(),
         'is_completed': isCompleted
       };
+
+  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+      id: 1,
+      title: json['title'],
+      description: json['description'],
+      startDate: DateTime.parse(json['created_at']),
+      dueDate: DateTime.parse(json['due_date']),
+      isCompleted: json['is_completed']);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list_server/model/task_model.dart';
+import 'package:todo_list_server/services/http_handler.dart';
 import 'package:todo_list_server/view/components/bottom_floating_button.dart';
 import 'package:todo_list_server/view/components/customized_app_bar.dart';
 import 'package:todo_list_server/view/utility.dart';
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    HttpHandler.retrieveTaskModels();
     final taskViewModel = context.watch<TaskViewModel>();
     void tapEditButtonHandler() {
       setState(() {
